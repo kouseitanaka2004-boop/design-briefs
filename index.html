@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デザイン指示書 — FORGE PRECISION — 高精度パター A4チラシ</title>
+<style>
+:root {
+  --brand: #1A3E2A;
+  --brand-light: #e8f0f5;
+  --dark: #1A1A1A;
+  --grey: #888888;
+  --lgrey: #DDDDDD;
+  --bg: #FAFAF8;
+  --white: #FFFFFF;
+  --radius: 10px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background: var(--bg); color: var(--dark); line-height: 1.7; font-size: 14px;
+}
+.header { background: var(--brand); color: var(--white); padding: 40px 48px 32px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+.header .subtitle { font-size: 14px; opacity: 0.85; }
+.header .meta { margin-top: 16px; font-size: 12px; opacity: 0.7; display: flex; gap: 24px; flex-wrap: wrap; }
+.main { max-width: 900px; margin: 0 auto; padding: 32px 48px 60px; }
+.section { margin-bottom: 28px; }
+.section-title {
+  font-size: 15px; font-weight: 700; color: var(--brand);
+  border-left: 4px solid var(--brand); padding-left: 12px; margin-bottom: 14px;
+}
+.card {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 20px 24px; margin-bottom: 12px;
+}
+.card p { margin-bottom: 6px; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 4px; font-size: 13px; }
+table th {
+  background: var(--brand); color: var(--white); padding: 10px 14px;
+  text-align: left; font-weight: 600; font-size: 12px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+table td { padding: 10px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
+table tr:last-child td { border-bottom: none; }
+table tr:nth-child(even) td { background: #fafafa; }
+.palette { display: flex; gap: 12px; flex-wrap: wrap; }
+.color-chip {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden; width: 140px; text-align: center;
+}
+.color-chip .swatch {
+  height: 56px; width: 100%;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.color-chip .info { padding: 8px 10px; font-size: 12px; line-height: 1.5; }
+.color-chip .hex { font-family: "SF Mono", Menlo, monospace; font-weight: 700; font-size: 13px; }
+.color-chip .role { color: var(--grey); font-size: 11px; }
+.ng-item {
+  background: #FFF5F5; border-left: 3px solid #E53E3E;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 16px; margin-bottom: 8px; font-size: 13px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.ng-item strong { color: #C53030; }
+.image-zone { margin-top: 8px; }
+.drop-area {
+  border: 3px dashed var(--brand); border-radius: var(--radius);
+  background: var(--brand-light); min-height: 300px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; cursor: pointer; transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.drop-area.over { background: #d4e8f3; border-color: #2a5c7b; }
+.drop-area.has-image {
+  border-style: solid; border-color: #4CAF50; background: var(--white); padding: 12px;
+}
+.drop-area .placeholder { text-align: center; color: var(--brand); }
+.drop-area .placeholder h3 { font-size: 18px; margin-bottom: 6px; }
+.drop-area .placeholder p { font-size: 13px; opacity: 0.7; }
+.drop-area img.preview { max-width: 100%; max-height: 500px; border-radius: 6px; display: none; }
+.drop-area .remove-btn {
+  position: absolute; top: 10px; right: 10px; background: #E53E3E;
+  color: white; border: none; border-radius: 50%; width: 28px; height: 28px;
+  font-size: 16px; cursor: pointer; display: none; align-items: center;
+  justify-content: center; line-height: 1;
+}
+.drop-area.has-image .remove-btn { display: flex; }
+.drop-area.has-image .placeholder { display: none; }
+.drop-input { display: none; }
+.image-label {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 8px; font-size: 12px; color: var(--grey);
+}
+.image-label .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lgrey); }
+.image-label .status-dot.active { background: #4CAF50; }
+.footer { text-align: center; padding: 24px; font-size: 11px; color: var(--grey); border-top: 1px solid #eee; }
+@media print {
+  body { background: white; }
+  .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .drop-area { border-style: solid; }
+  .drop-area .placeholder { display: none; }
+  .drop-area .remove-btn { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>デザイン指示書</h1>
+  <div class="subtitle">FORGE PRECISION — 高精度パター A4チラシ</div>
+  <div class="meta">
+    <span>作成日: 2026-03-10</span>
+    <span>形式: A4チラシ (210×297mm / 300dpi)</span>
+    <span>使用場所: ゴルフショップ店頭配布</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="section">
+    <div class="section-title">基本情報</div>
+    <div class="card"><table>
+      <tr><th style="width:140px">項目</th><th>内容</th></tr>
+      <tr><td><strong>制作物</strong></td><td>A4チラシ（片面）</td></tr><tr><td><strong>ブランド</strong></td><td>FORGE PRECISION（架空ブランド）</td></tr><tr><td><strong>商品</strong></td><td>高精度CNCミルドパター「FORGE ONE」</td></tr><tr><td><strong>価格帯</strong></td><td>¥39,800〜¥49,800（高級路線）</td></tr><tr><td><strong>ターゲット</strong></td><td>スコア90切りを目指す30〜50代の中級ゴルファー</td></tr><tr><td><strong>目的</strong></td><td>ブランド認知・高級イメージの確立</td></tr><tr><td><strong>トーン</strong></td><td>洗練・静謐・職人の自信</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">ターゲット心理</div>
+    <div class="card"><table>
+      <tr><th style="width:180px">観点</th><th>分析</th></tr>
+      <tr><td><strong>見る場面</strong></td><td>ゴルフショップでパターコーナーを物色しているとき</td></tr><tr><td><strong>悩み・欲求</strong></td><td>3パットが多い。道具で変わるなら投資したい。Scottyは高すぎるが安物は嫌</td></tr><tr><td><strong>起こしたい感情</strong></td><td>静かな確信と高揚感 — これで本気でスコアが変わりそうだ</td></tr><tr><td><strong>持ち帰る理由</strong></td><td>QRコード＋限定クーポンで自宅で検討→EC購入の導線</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">競合分析</div>
+    <div class="card">
+      <table>
+        <tr><th>ブランド</th><th>ビジュアル傾向</th><th>弱点</th></tr>
+        <tr><td><strong>Scotty Cameron</strong></td><td>ミニマル・職人気質・モノトーン。プロ使用率No.1。高級感最強</td><td>価格が高すぎて中級者に手が届きにくい。自分のための道具感が薄い</td></tr><tr><td><strong>Odyssey</strong></td><td>テクノロジー訴求・カラフル配色。AI技術を前面に。親しみやすい</td><td>カジュアルすぎて高級感に欠ける。量産品イメージが強い</td></tr><tr><td><strong>Ping</strong></td><td>データ重視・精密工学。シルバー×ブラック。カスタムフィッティング推し</td><td>ビジュアルが地味で店頭で埋もれやすい。感情訴求が弱い</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:13px;color:#666"><strong>差別化方向:</strong> Scottyの高級感とOdysseyの技術訴求の『いいとこ取り』。深いグリーン×ゴールドで『静かな自信』を表現し、中級者が『自分のための本気の一本』と感じられるポジショニング</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">カラーパレット</div>
+    <div class="palette">
+      <div class="color-chip">
+        <div class="swatch" style="background:#1A3E2A"></div>
+        <div class="info">
+          <div class="hex">#1A3E2A</div>
+          <div class="role">メイン(45%)</div>
+          <div class="role">深い信頼感・芝の連想・品格</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="swatch" style="background:#D4AF37"></div>
+        <div class="info">
+          <div class="hex">#D4AF37</div>
+          <div class="role">アクセント(15%)</div>
+          <div class="role">高級感・視線誘導</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="swatch" style="background:#1A1A1A"></div>
+        <div class="info">
+          <div class="hex">#1A1A1A</div>
+          <div class="role">サブ(25%)</div>
+          <div class="role">引き締め・プロ感</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="swatch" style="background:#F5F0E8"></div>
+        <div class="info">
+          <div class="hex">#F5F0E8</div>
+          <div class="role">ベース(15%)</div>
+          <div class="role">温かみのある余白</div>
+        </div>
+      </div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">レイアウト・構成</div>
+    <div class="card">
+<p><strong>構図: 縦型A4・上下2分割＋中央商品配置</strong></p>
+<p>上部40%: ダークグリーン背景にゴールドのキャッチコピー。左上にブランドロゴ</p>
+<p>中央: パター商品写真を大きく配置。45度俯瞰アングルで質感が伝わる構図。周囲に十分な余白</p>
+<p>下部30%: オフホワイト背景に3つのUSPをアイコン付きで横並び</p>
+<p>最下部: QRコード＋限定クーポンコード＋ブランドURL</p>
+<p><strong>視線誘導:</strong> Z型 — ロゴ(左上)→コピー(右上)→商品(中央)→USP(下)→QR(右下)</p>
+<p><strong>余白:</strong> 要素間20mm以上。商品写真周囲30mm以上で「呼吸」を作る</p>
+</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">必須要素</div>
+    <div class="card"><table>
+      <tr><th>要素</th><th>役割</th></tr>
+      <tr><td><strong>ブランドロゴ「FORGE PRECISION」</strong></td><td>左上。ゴールド×ダークグリーンで高級感</td></tr><tr><td><strong>キャッチコピー</strong></td><td>上部中央。ゴールド文字。例:『一打の精度が、スコアを変える。』</td></tr><tr><td><strong>パター商品写真</strong></td><td>中央に大きく。CNCミルド模様と仕上げの質感が見える高品質カット</td></tr><tr><td><strong>商品名「FORGE ONE」</strong></td><td>商品写真の下。控えめだが読みやすいサイズ</td></tr><tr><td><strong>3つのUSP</strong></td><td>①精密CNCミルド ②ソフトな打感 ③カスタムウェイトシステム</td></tr><tr><td><strong>価格表示</strong></td><td>¥39,800〜（税込）。手が届く安心感を演出</td></tr><tr><td><strong>QRコード＋限定クーポン</strong></td><td>右下。ECサイト誘導＋「SHOP2026」初回10%OFF</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">NGリスト</div>
+    
+    <div class="ng-item">
+      <strong>NG:</strong> 派手なグラデーション・ネオン色
+      <br><span style="color:#666">理由: 高級感を損なう。安売り感が出る</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> 過度な装飾やフレーム
+      <br><span style="color:#666">理由: 余白が高級感の鍵</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> カジュアルすぎるイラスト
+      <br><span style="color:#666">理由: 中級者にはチープに映る</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> 赤・オレンジ系アクセント
+      <br><span style="color:#666">理由: セール感が出てブランドイメージと矛盾</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> 情報の詰め込みすぎ
+      <br><span style="color:#666">理由: チラシは3秒で判断される。要素は最小限に</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">デザインイメージ</div>
+    <div class="image-zone">
+      <div class="drop-area" id="dropArea">
+        <div class="placeholder">
+          <h3>&#x1f4cb; 画像をここにドロップ or ペースト</h3>
+          <p>Cmd+V / クリックでファイル選択 / ドラッグ&amp;ドロップ</p>
+          <p style="margin-top:8px;font-size:11px;opacity:0.5">AI生成画像を貼り付けると、この指示書に埋め込まれます</p>
+        </div>
+        <img class="preview" id="previewImg">
+        <button class="remove-btn" id="removeBtn" title="画像を削除">&#x2715;</button>
+      </div>
+      <input type="file" class="drop-input" id="fileInput" accept="image/*">
+      <div class="image-label">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">画像未設定 — 貼り付けるとこの指示書に埋め込まれます</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Design Brief — Generated by AI Design Director v3<br>
+  画像を埋め込んだ状態でこのHTMLを保存(Cmd+S)してデザイナーに共有してください
+</div>
+
+<script>
+(function() {
+  var da = document.getElementById('dropArea');
+  var fi = document.getElementById('fileInput');
+  var pi = document.getElementById('previewImg');
+  var rb = document.getElementById('removeBtn');
+  var sd = document.getElementById('statusDot');
+  var st = document.getElementById('statusText');
+  function embed(file) {
+    var r = new FileReader();
+    r.onload = function(e) {
+      pi.src = e.target.result;
+      pi.style.display = 'block';
+      da.classList.add('has-image');
+      sd.classList.add('active');
+      st.textContent = '画像埋め込み済み — このままHTMLを保存(Cmd+S)して共有できます';
+    };
+    r.readAsDataURL(file);
+  }
+  da.addEventListener('click', function(e) { if (e.target !== rb) fi.click(); });
+  fi.addEventListener('change', function(e) { if (e.target.files[0]) embed(e.target.files[0]); });
+  document.addEventListener('paste', function(e) {
+    for (var i = 0; i < e.clipboardData.items.length; i++) {
+      if (e.clipboardData.items[i].type.indexOf('image') !== -1) {
+        embed(e.clipboardData.items[i].getAsFile()); break;
+      }
+    }
+  });
+  da.addEventListener('dragover', function(e) { e.preventDefault(); da.classList.add('over'); });
+  da.addEventListener('dragleave', function() { da.classList.remove('over'); });
+  da.addEventListener('drop', function(e) {
+    e.preventDefault(); da.classList.remove('over');
+    if (e.dataTransfer.files[0]) embed(e.dataTransfer.files[0]);
+  });
+  rb.addEventListener('click', function(e) {
+    e.stopPropagation(); pi.src=''; pi.style.display='none';
+    da.classList.remove('has-image'); sd.classList.remove('active');
+    st.textContent='画像未設定 — 貼り付けるとこの指示書に埋め込まれます'; fi.value='';
+  });
+})();
+</script>
+
+</body>
+          </html>
