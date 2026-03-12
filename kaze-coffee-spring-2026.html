@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デザイン指示書 — KAZE COFFEE — 春限定ブレンド「風薫る」チラシ</title>
+<style>
+:root {
+  --brand: #4E3B31;
+  --brand-light: #e8f0f5;
+  --dark: #1A1A1A;
+  --grey: #888888;
+  --lgrey: #DDDDDD;
+  --bg: #FAFAF8;
+  --white: #FFFFFF;
+  --radius: 10px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background: var(--bg); color: var(--dark); line-height: 1.7; font-size: 14px;
+}
+.header { background: var(--brand); color: var(--white); padding: 40px 48px 32px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+.header .subtitle { font-size: 14px; opacity: 0.85; }
+.header .meta { margin-top: 16px; font-size: 12px; opacity: 0.7; display: flex; gap: 24px; flex-wrap: wrap; }
+.main { max-width: 900px; margin: 0 auto; padding: 32px 48px 60px; }
+.section { margin-bottom: 28px; }
+.section-title {
+  font-size: 15px; font-weight: 700; color: var(--brand);
+  border-left: 4px solid var(--brand); padding-left: 12px; margin-bottom: 14px;
+}
+.card {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 20px 24px; margin-bottom: 12px;
+}
+.card p { margin-bottom: 6px; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 4px; font-size: 13px; }
+table th {
+  background: var(--brand); color: var(--white); padding: 10px 14px;
+  text-align: left; font-weight: 600; font-size: 12px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+table td { padding: 10px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
+table tr:last-child td { border-bottom: none; }
+table tr:nth-child(even) td { background: #fafafa; }
+.palette { display: flex; gap: 12px; flex-wrap: wrap; }
+.color-chip {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden; width: 140px; text-align: center;
+}
+.color-chip .swatch {
+  height: 56px; width: 100%;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.color-chip .info { padding: 8px 10px; font-size: 12px; line-height: 1.5; }
+.color-chip .hex { font-family: "SF Mono", Menlo, monospace; font-weight: 700; font-size: 13px; }
+.color-chip .role { color: var(--grey); font-size: 11px; }
+.ng-item {
+  background: #FFF5F5; border-left: 3px solid #E53E3E;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 16px; margin-bottom: 8px; font-size: 13px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.ng-item strong { color: #C53030; }
+.image-zone { margin-top: 8px; }
+.drop-area {
+  border: 3px dashed var(--brand); border-radius: var(--radius);
+  background: var(--brand-light); min-height: 300px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; cursor: pointer; transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.drop-area.over { background: #d4e8f3; border-color: #2a5c7b; }
+.drop-area.has-image {
+  border-style: solid; border-color: #4CAF50; background: var(--white); padding: 12px;
+}
+.drop-area .placeholder { text-align: center; color: var(--brand); }
+.drop-area .placeholder h3 { font-size: 18px; margin-bottom: 6px; }
+.drop-area .placeholder p { font-size: 13px; opacity: 0.7; }
+.drop-area img.preview { max-width: 100%; max-height: 500px; border-radius: 6px; display: none; }
+.drop-area .remove-btn {
+  position: absolute; top: 10px; right: 10px; background: #E53E3E;
+  color: white; border: none; border-radius: 50%; width: 28px; height: 28px;
+  font-size: 16px; cursor: pointer; display: none; align-items: center;
+  justify-content: center; line-height: 1;
+}
+.drop-area.has-image .remove-btn { display: flex; }
+.drop-area.has-image .placeholder { display: none; }
+.drop-input { display: none; }
+.image-label {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 8px; font-size: 12px; color: var(--grey);
+}
+.image-label .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lgrey); }
+.image-label .status-dot.active { background: #4CAF50; }
+.footer { text-align: center; padding: 24px; font-size: 11px; color: var(--grey); border-top: 1px solid #eee; }
+@media print {
+  body { background: white; }
+  .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .drop-area { border-style: solid; }
+  .drop-area .placeholder { display: none; }
+  .drop-area .remove-btn { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>デザイン指示書</h1>
+  <div class="subtitle">KAZE COFFEE — 春限定ブレンド「風薫る」チラシ</div>
+  <div class="meta">
+    <span>作成日: 2026-03-12</span>
+    <span>形式: A4チラシ (210×297mm / 300dpi)</span>
+    <span>使用場所: 店頭配布 / カフェ店内掲示 / Instagram投稿</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="section">
+    <div class="section-title">基本情報</div>
+    <div class="card"><table>
+      <tr><th style="width:140px">項目</th><th>内容</th></tr>
+      <tr><td><strong>制作物</strong></td><td>A4チラシ（片面）</td></tr><tr><td><strong>ブランド</strong></td><td>KAZE COFFEE（架空のスペシャルティコーヒーロースター）</td></tr><tr><td><strong>商品</strong></td><td>春限定ブレンド「風薫る」— エチオピア×グアテマラの華やかなブレンド</td></tr><tr><td><strong>ターゲット</strong></td><td>25〜40代のコーヒー好き。品質・産地ストーリーに価値を感じる層</td></tr><tr><td><strong>目的</strong></td><td>春限定ブレンドの認知獲得 → 店頭購入 or オンラインストアへの誘導</td></tr><tr><td><strong>トーンマナー</strong></td><td>上質だけど親しみやすい。「職人の丁寧さ」と「春の軽やかさ」の両立</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">ターゲット心理</div>
+    <div class="card"><table>
+      <tr><th style="width:180px">観点</th><th>分析</th></tr>
+      <tr><td><strong>見る場面</strong></td><td>カフェ店頭のラック、レジ横、SNSのフィード。日常の中でふと目に入る瞬間</td></tr><tr><td><strong>悩み・欲求</strong></td><td>いつものコーヒーに飽きた / 季節感のある特別な体験がしたい / 本物志向だけど堅すぎないのがいい</td></tr><tr><td><strong>起こしたい感情</strong></td><td>「これ、ちょっと気になる」→「春っぽくて素敵」→「試してみたい」の3段階</td></tr><tr><td><strong>持ち帰る理由</strong></td><td>限定感（今だけ）+ 産地ストーリーへの共感 + ビジュアルの美しさでSNSシェア欲</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">競合分析</div>
+    <div class="card">
+      <table>
+        <tr><th>ブランド</th><th>ビジュアル傾向</th><th>弱点</th></tr>
+        <tr><td><strong>Blue Bottle Coffee</strong></td><td>ミニマル・白基調・余白多め・洗練。知的な印象</td><td>冷たく見える。親しみやすさに欠け季節感の表現が弱い</td></tr><tr><td><strong>猿田彧凉琲</strong></td><td>和テイスト・手書き風・クラフト感。温かみのある日本的表現</td><td>職人寄りすぎて若年層への訴求力が弱い。SNS映えしにくい</td></tr><tr><td><strong>% ARABICA</strong></td><td>モノトーン・建築的・グローバル感。写真中心でロゴが主役</td><td>商品の個性が伝わりにくい。季節限定の特別感を出しにくい</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:13px;color:#666"><strong>差別化方向:</strong> Blue Bottleの洗練さ + 猿田彧の温かみを融合し、「春の空気感」を色と余白で表現。競合にない『季節×産地ストーリー×余白の美しさ』の三位一体で差別化</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">カラーパレット</div>
+    <div class="palette">
+      <div class="color-chip">
+        <div class="swatch" style="background:#4E3B31"></div>
+        <div class="info">
+          <div class="hex">#4E3B31</div>
+          <div class="role">メイン(40%) — ダークロースト</div>
+          <div class="role">信頼・品質・深み。コーヒーの本格感を担保</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="swatch" style="background:#D9B68C"></div>
+        <div class="info">
+          <div class="hex">#D9B68C</div>
+          <div class="role">サブ(30%) — ラテベージュ</div>
+          <div class="role">温かみ・親しみ・ナチュラル。クラフト感と上質さを両立</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="swatch" style="background:#8B9E6B"></div>
+        <div class="info">
+          <div class="hex">#8B9E6B</div>
+          <div class="role">アクセント(15%) — 若葉グリーン</div>
+          <div class="role">春・新鮮さ・産地の自然。季節感を一色で伝える</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="swatch" style="background:#F7F2E7"></div>
+        <div class="info">
+          <div class="hex">#F7F2E7</div>
+          <div class="role">背景(15%) — クリームホワイト</div>
+          <div class="role">余白・清潔感・上品さ。温かみのある白で全体を包む</div>
+        </div>
+      </div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">レイアウト・構成</div>
+    <div class="card">
+    <p><strong>構図:</strong> 上1/3にヒーローゾーン（コーヒー豆orカップの写真）、中央にキャッチコピー＋商品説明、下1/3に店舗情報＋QRコード</p>
+    <p><strong>視線誘導:</strong> Z型。左上ブランドロゴ → 右上ヒーロー画像 → 中央キャッチコピー → 左下商品詳細 → 右下QR/CTA</p>
+    <p><strong>余白:</strong> 全体の30%以上を余白に。2026年トレンドの「低彩度×アクセントカラー」を意識し、若葉グリーンを差し色として効果的に配置</p>
+    <p><strong>写真エリア:</strong> 上部に大きく1枚。湯気の立つコーヒーカップ or 光を浴びるコーヒー豆。背景はボケ感のある自然光</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">必須要素</div>
+    <div class="card"><table>
+      <tr><th>要素</th><th>役割</th></tr>
+      <tr><td><strong>ブランドロゴ</strong></td><td>左上に小さく配置。主張しすぎず認知できるサイズ。#4E3B31</td></tr><tr><td><strong>ヒーロー写真</strong></td><td>上部1/3。春の光を感じるコーヒーシーン。商品の体験を伝える</td></tr><tr><td><strong>キャッチコピー</strong></td><td>中央。「風が、薫る。」— 短く印象的な一言</td></tr><tr><td><strong>商品説明</strong></td><td>3〜4行。産地・味わい・限定期間を簡潔に</td></tr><tr><td><strong>価格</strong></td><td>200g ¥1,980（税込）— 目立ちすぎず明確に</td></tr><tr><td><strong>QRコード</strong></td><td>右下。オンラインストアへの導線</td></tr><tr><td><strong>限定バッジ</strong></td><td>「春限定 / Spring Limited」若葉グリーンで季節感強調</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">NGリスト</div>
+    
+    <div class="ng-item">
+      <strong>NG:</strong> 過度な装飾・グラデーション
+      <br><span style="color:#666">理由: ブランドの上質なシンプルさと矛盾。安っぽく見えるリスク</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> 赤・黄のセール系カラー
+      <br><span style="color:#666">理由: スーパーのチラシ感が出る。スペシャルティコーヒーの世界観を壊す</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> 文字の詰め込みすぎ
+      <br><span style="color:#666">理由: 余白30%ルールを守る。情報過多は読まれないチラシの最大原因</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> クリップアート素材
+      <br><span style="color:#666">理由: ブランドの本格感が損なわれる。写真or洗練されたイラストのみ</span>
+    </div>
+    <div class="ng-item">
+      <strong>NG:</strong> 英語だけのコピー
+      <br><span style="color:#666">理由: メインコピーは必ず日本語。英語はサブ的に使用</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">デザインイメージ</div>
+    <div class="image-zone">
+      <div class="drop-area" id="dropArea">
+        <div class="placeholder">
+          <h3>&#x1f4cb; 画像をここにドロッブ or ペースト</h3>
+          <p>Cmd+V / クリックでファイル選択 / ドラッグ&amp;ドロッブ</p>
+          <p style="margin-top:8px;font-size:11px;opacity:0.5">AI生成画像を貼り付けると、この指示書に埋め込まれます</p>
+        </div>
+        <img class="preview" id="previewImg">
+        <button class="remove-btn" id="removeBtn" title="画像を削除">&#x2715;</button>
+      </div>
+      <input type="file" class="drop-input" id="fileInput" accept="image/*">
+      <div class="image-label">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">画像未設定 — 貼り付けるとこの指示書に埋め込まれます</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Design Brief — Generated by AI Design Director v3<br>
+  画像を埋め込んだ状態でこのHTMLを保存(Cmd+S)しでデザイナーに共有してください
+</div>
+
+<script>
+(function() {
+  var da = document.getElementById('dropArea');
+  var fi = document.getElementById('fileInput');
+  var pi = document.getElementById('previewImg');
+  var rb = document.getElementById('removeBtn');
+  var sd = document.getElementById('statusDot');
+  var st = document.getElementById('statusText');
+  function embed(file) {
+    var r = new FileReader();
+    r.onload = function(e) {
+      pi.src = e.target.result;
+      pi.style.display = 'block';
+      da.classList.add('has-image');
+      sd.classList.add('active');
+      st.textContent = '画像埋め込み済み — このままHTMLを保存(Cmd+S)して共有できます';
+    };
+    r.readAsDataURL(file);
+  }
+  da.addEventListener('click', function(e) { if (e.target !== rb) fi.click(); });
+  fi.addEventListener('change', function(e) { if (e.target.files[0]) embed(e.target.files[0]); });
+  document.addEventListener('paste', function(e) {
+    for (var i = 0; i < e.clipboardData.items.length; i++) {
+      if (e.clipboardData.items[i].type.indexOf('image') !== -1) {
+        embed(e.clipboardData.items[i].getAsFile()); break;
+      }
+    }
+  });
+  da.addEventListener('dragover', function(e) { e.preventDefault(); da.classList.add('over'); });
+  da.addEventListener('dragleave', function() { da.classList.remove('over'); });
+  da.addEventListener('drop', function(e) {
+    e.preventDefault(); da.classList.remove('over');
+    if (e.dataTransfer.files[0]) embed(e.dataTransfer.files[0]);
+  });
+  rb.addEventListener('click', function(e) {
+    e.stopPropagation(); pi.src=''; pi.style.display='none';
+    da.classList.remove('has-image'); sd.classList.remove('active');
+    st.textContent='画像未設定 — 貼り付けるとこの指示書に埋め込まれます'; fi.value='';
+  });
+})();
+</script>
+
+</body>
+</html>
