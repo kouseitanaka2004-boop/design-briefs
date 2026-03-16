@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI副業を0から始めた記録｜1ヶ月目のリアル</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #f8f9fa;
+    color: #1a1a1a;
+    line-height: 1.9;
+    font-size: 16px;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+    color: #fff;
+    padding: 80px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(16,185,129,0.06) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0,0); }
+    50% { transform: translate(-20px,-20px); }
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(99,102,241,0.2);
+    border: 1px solid rgba(99,102,241,0.4);
+    color: #a5b4fc;
+    font-size: 13px; font-weight: 500;
+    padding: 6px 16px; border-radius: 50px;
+    margin-bottom: 24px; letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: 28px; font-weight: 900;
+    line-height: 1.5; margin-bottom: 20px;
+  }
+  .hero h1 .accent { color: #6ee7b7; }
+  .hero p {
+    font-size: 15px; color: rgba(255,255,255,0.7);
+    line-height: 1.8; max-width: 560px; margin: 0 auto;
+  }
+
+  .container { max-width: 700px; margin: 0 auto; padding: 0 20px; }
+  .content {
+    background: #fff;
+    margin: -30px auto 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    padding: 48px 40px;
+    position: relative; z-index: 2;
+    max-width: 700px;
+  }
+  @media (max-width: 600px) {
+    .content { padding: 32px 20px; }
+    .hero h1 { font-size: 22px; }
+  }
+
+  h2 {
+    font-size: 20px; font-weight: 900;
+    margin: 48px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #0f0f0f;
+    line-height: 1.5;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 17px; font-weight: 700; margin: 32px 0 12px; color: #1a1a2e; }
+  p { margin-bottom: 16px; }
+
+  .callout {
+    background: #f0fdf4;
+    border-left: 4px solid #10b981;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px; margin: 24px 0; font-size: 15px;
+  }
+  .callout-warn { background: #fefce8; border-left-color: #eab308; }
+  .callout-blue { background: #eff6ff; border-left-color: #3b82f6; }
+
+  .data-box {
+    background: #f8fafc; border: 1px solid #e2e8f0;
+    border-radius: 12px; padding: 24px; margin: 24px 0;
+  }
+  .data-box-title {
+    font-size: 13px; font-weight: 700; color: #64748b;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+  }
+  .data-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 15px;
+  }
+  .data-row:last-child { border-bottom: none; }
+  .data-label { color: #475569; }
+  .data-value { font-weight: 700; color: #0f172a; }
+
+  .step-list { list-style: none; margin: 24px 0; }
+  .step-list li {
+    position: relative; padding: 16px 16px 16px 56px;
+    margin-bottom: 12px; background: #f8fafc;
+    border-radius: 12px; border: 1px solid #e2e8f0;
+  }
+  .step-list li::before {
+    content: attr(data-step);
+    position: absolute; left: 16px; top: 16px;
+    width: 28px; height: 28px;
+    background: #1a1a2e; color: #fff;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .step-title { font-weight: 700; display: block; margin-bottom: 4px; }
+  .step-desc { font-size: 14px; color: #64748b; }
+
+  .quote-box {
+    background: #0f0f0f; color: #fff;
+    border-radius: 12px; padding: 32px;
+    margin: 32px 0; text-align: center;
+  }
+  .quote-box p { font-size: 18px; font-weight: 700; line-height: 1.7; margin: 0; }
+  .quote-box .sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 12px; }
+
+  .cta-section {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff; border-radius: 16px;
+    padding: 40px 32px; margin: 40px 0 0; text-align: center;
+  }
+  .cta-section h3 { color: #fff; font-size: 20px; margin: 0 0 12px; }
+  .cta-section p { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 24px; }
+  .cta-btn {
+    display: inline-block; background: #6ee7b7;
+    color: #0f172a; font-weight: 700; font-size: 15px;
+    padding: 14px 40px; border-radius: 50px;
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .cta-btn:hover { transform: scale(1.05); }
+
+  .footer { text-align: center; padding: 40px 20px; font-size: 13px; color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">無料公開｜全手順つき</span>
+    <h1>
+      AI副業を<span class="accent">0から始めた</span>記録<br>
+      ｜1ヶ月目のリアル
+    </h1>
+    <p>
+      実績ゼロ。スキルなし。月の固定費980円。<br>
+      それでもClaudeとnoteだけでAI副業を始めた。<br>
+      やったこと・失敗・数字を全部さらす。
+    </p>
+  </div>
+</div>
+
+<div class="content container">
+
+  <h2>はじめに：なぜ全部公開するのか</h2>
+
+  <p>こんにちは、<strong>こうせい</strong>です。</p>
+  <p>2026年3月、AI副業を始めました。使うのは<strong>Claude（AI）</strong>と<strong>note（販売プラットフォーム）</strong>だけ。月の固定費はClaude Proの約980円。</p>
+  <p>目標は<strong>3ヶ月で月20万円</strong>。正直、達成できるかは分からない。</p>
+  <p>でも、だからこそ全部記録する。うまくいったことも、失敗したことも、数字も、全部。</p>
+
+  <div class="callout">
+    <strong>この記事の対象者：</strong><br>
+    ・AI副業に興味あるけど「本当に稼げるの？」と疑ってる人<br>
+    ・何から始めればいいか分からない人<br>
+    ・「成功者の話」じゃなくて「リアルな過程」が知りたい人
+  </div>
+
+  <p>ネットには「月100万稼げました！」みたいな発信が溢れてる。でも、<strong>始めたばかりの人のリアルな記録</strong>ってほぼない。成功者は成功した「後」に振り返って語るから、途中の泥臭い部分が見えない。</p>
+  <p>だから僕が、途中の人間として全部書く。</p>
+
+  <h2>僕の現在地（ありのまま）</h2>
+
+  <div class="data-box">
+    <div class="data-box-title">2026年3月時点のリアルデータ</div>
+    <div class="data-row">
+      <span class="data-label">AI副業歴</span>
+      <span class="data-value">約2週間</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">月の固定費</span>
+      <span class="data-value">980円</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">使っているツール</span>
+      <span class="data-value">Claude + note</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">X投稿数</span>
+      <span class="data-value">22投稿</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Xフォロワー</span>
+      <span class="data-value">45人</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">目標</span>
+      <span class="data-value">3ヶ月で月20万円</span>
+    </div>
+  </div>
+
+  <p>華々しい実績はない。「この人すごい！」ではなく「この人、自分と同じスタートラインだ」と思ってもらえたら、この記事は成功。</p>
+
+  <h2>なぜAI副業を始めたのか</h2>
+
+  <p><strong>1. 初期費用がほぼゼロ</strong><br>
+  Claude Proが月980円。noteは無料で始められる。他の副業（物販・プログラミング等）と比べて圧倒的にリスクが低い。最悪、失敗しても980円しか失わない。</p>
+
+  <p><strong>2. AIの進化が速すぎる</strong><br>
+  「AIを使いこなせる人」と「使えない人」の差が、これからどんどん広がる。だったら今のうちに、AIと一緒に何かを作る経験を積んでおきたかった。</p>
+
+  <p><strong>3. 「やったことの記録」自体がコンテンツになる</strong><br>
+  AI副業の過程を発信すれば、それ自体がXの投稿ネタにもなるし、noteの記事にもなる。やったことをアウトプットするだけで、コンテンツが自然に生まれる。</p>
+
+  <h2>1ヶ月目にやったこと（全手順）</h2>
+
+  <ol class="step-list">
+    <li data-step="1">
+      <span class="step-title">Claude Proに登録した</span>
+      <span class="step-desc">月980円のプランに加入。これが唯一の初期投資。ChatGPTと迷ったけど、Claudeの文章力が圧倒的だったのでこちらを選んだ。</span>
+    </li>
+    <li data-step="2">
+      <span class="step-title">noteアカウントを作った</span>
+      <span class="step-desc">無料で開設。有料記事を販売できるプラットフォーム。手数料は引かれるけど、初期費用ゼロで始められるのが良い。</span>
+    </li>
+    <li data-step="3">
+      <span class="step-title">Claudeで記事を書き始めた</span>
+      <span class="step-desc">最初は「何を書けばいいか分からない」状態。プロンプトを工夫しながら、AI活用系の記事を量産し始めた。1記事あたり20〜40分。</span>
+    </li>
+    <li data-step="4">
+      <span class="step-title">Xで発信を始めた</span>
+      <span class="step-desc">AI副業の過程をリアルタイムで投稿開始。「今日やったこと」「学んだこと」「失敗したこと」を中心に。</span>
+    </li>
+    <li data-step="5">
+      <span class="step-title">毎日、振り返りをメモした</span>
+      <span class="step-desc">何がうまくいって、何がダメだったかを毎日記録。このメモ自体が次の投稿のネタになる。</span>
+    </li>
+  </ol>
+
+  <h2>正直に書く：1ヶ月目の失敗</h2>
+
+  <div class="callout callout-warn">
+    <strong>失敗①：最初の投稿が怖くて3日間何も書けなかった</strong><br>
+    「変なこと書いたらどうしよう」「誰にも見られなかったら恥ずかしい」。この恐怖で手が止まった。結局、3日目に「もういいや、とりあえず出す」と開き直って1本目を投稿した。
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>失敗②：Claudeの出力をそのまま投稿して反応ゼロ</strong><br>
+    AIが書いた文章をコピペして投稿したら、見事にスルーされた。AIっぽい文章は読者に刺さらない。「自分の言葉で書き直す」工程が必要だと学んだ。
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>失敗③：noteのタイトルで大失敗</strong><br>
+    最初の記事、タイトルを適当につけたらPVがほぼゼロ。タイトルだけで90%決まるという話は本当だった。
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>失敗④：固定ツイートのリンクが壊れてた</strong><br>
+    ローカルファイルのパスをそのまま貼ってしまい、誰もアクセスできない状態が続いていた。これは痛い。（この記事はその修正版です。）
+  </div>
+
+  <p>失敗は恥ずかしい。でも、こういう「初心者あるある」を正直に書くことで、同じミスをする人を1人でも減らせたら、この記事の価値がある。</p>
+
+  <h2>1ヶ月目で学んだ5つのこと</h2>
+
+  <h3>1. 「とりあえず出す」が最強</h3>
+  <p>完璧を目指すと永遠に出せない。60点でいいから出す。出してから直す。この「出す→直す」のサイクルが回り始めたら勝ち。</p>
+
+  <h3>2. AIは「下書きマシン」として使うのが正解</h3>
+  <p>Claudeの出力をそのまま使うのではなく、下書きとして使い、自分の言葉・体験・感情を足す。そうすると「AIっぽさ」が消えて、読まれる文章になる。</p>
+
+  <h3>3. タイトルが9割</h3>
+  <p>noteでもXでも、最初の1行で読むかどうか決まる。数字を入れる、具体性を出す、「自分ごと」に感じるワードを使う。ここだけは時間をかける。</p>
+
+  <h3>4. 「やったこと日記」がコンテンツになる</h3>
+  <p>「今日Claudeで3本書いた。うち1本は全然ダメだった。理由は〇〇」——この日記レベルの文章が、実はフォロワーに一番刺さる。ノウハウより「リアル」が強い。</p>
+
+  <h3>5. 数字を出すと信頼度が上がる</h3>
+  <p>「頑張りました」より「PV 124、売上0円」のほうが信頼される。たとえ数字がショボくても、出すだけで「この人は本気でやってる」と伝わる。</p>
+
+  <h2>2ヶ月目にやること</h2>
+
+  <div class="callout callout-blue">
+    <strong>2ヶ月目の計画：</strong><br>
+    ・X投稿を「型」に沿って量産する（1日3〜5本）<br>
+    ・noteの有料記事を本格的に作り始める<br>
+    ・毎週、数字付きの進捗レポートをXで公開<br>
+    ・兄の会社の業務改善にもAIを導入予定（実験記録も公開する）<br>
+    ・「#AI副業の裏側」で日々のリアルを発信し続ける
+  </div>
+
+  <p>今のフォロワーは45人。目標の月20万にはまだ遠い。でも、ここから毎日データを取って、改善して、全部公開していく。</p>
+
+  <div class="quote-box">
+    <p>実績がないなら、<br>「実績を作る過程」を見せればいい。</p>
+    <p class="sub">—— 1ヶ月目の自分に言いたいこと</p>
+  </div>
+
+  <h2>【おまけ】僕が使っているClaudeプロンプト3選</h2>
+
+  <h3>① 記事の下書きを作るプロンプト</h3>
+  <div class="data-box">
+    <p style="font-size:14px; color: #475569; margin:0;">
+      「以下のテーマでnote記事の下書きを作ってください。<br>
+      テーマ：[テーマ]<br>
+      ターゲット：AI副業に興味がある初心者<br>
+      文字数：2000字程度<br>
+      構成：導入→本文3セクション→まとめ<br>
+      トーン：友達に話すような自然な口調で」
+    </p>
+  </div>
+
+  <h3>② X投稿の案を出すプロンプト</h3>
+  <div class="data-box">
+    <p style="font-size:14px; color: #475569; margin:0;">
+      「以下の体験をもとに、Xの投稿案を3パターン作ってください。<br>
+      体験：[今日やったこと/失敗したこと]<br>
+      条件：140字以内、1行目でインパクト、<br>
+      数字があれば入れる、最後にアクションを促す」
+    </p>
+  </div>
+
+  <h3>③ 記事タイトルを改善するプロンプト</h3>
+  <div class="data-box">
+    <p style="font-size:14px; color: #475569; margin:0;">
+      「以下のnote記事タイトルを、クリック率が高くなるように5パターン改善してください。<br>
+      現在のタイトル：[タイトル]<br>
+      条件：数字を含める、具体性を上げる、<br>
+      「自分ごと」に感じさせる」
+    </p>
+  </div>
+
+  <div class="cta-section">
+    <h3>この記録、毎週更新します</h3>
+    <p>毎週の売上・PV・失敗・学びを<br>Xでリアルタイム公開中。<br>一緒にAI副業を始めませんか？</p>
+    <a href="https://x.com/kousei_ai_log" class="cta-btn">Xをフォローする →</a>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>© 2026 こうせい｜AI副業の全記録</p>
+</div>
+
+</body>
+</html>
