@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孫子の兵法｜読書まとめ完全版</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.85;
+    font-size: 16px;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1a1a0a 0%, #2a2a10 50%, #3a3a15 100%);
+    padding: 80px 20px 60px;
+    text-align: center;
+    border-bottom: 3px solid #f0a500;
+  }
+  .hero h1 { font-size: 2.6em; color: #fff; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .hero .subtitle { font-size: 1.1em; color: #aaa; margin-bottom: 8px; }
+  .hero .author { font-size: 0.95em; color: #777; }
+  .container { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .toc {
+    background: #141410;
+    border: 1px solid #2a2a20;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .toc h2 { font-size: 1.2em; color: #f0a500; margin-bottom: 16px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 8px; }
+  .toc a { color: #8ecae6; text-decoration: none; }
+  .toc a:hover { color: #f0a500; }
+
+  .section { margin-bottom: 56px; }
+  .section-number {
+    display: inline-block; background: #f0a500; color: #000;
+    font-size: 0.8em; font-weight: bold; padding: 4px 12px;
+    border-radius: 20px; margin-bottom: 8px;
+  }
+  .section h2 {
+    font-size: 1.6em; color: #fff; margin-bottom: 20px;
+    padding-bottom: 10px; border-bottom: 2px solid #2a2a20;
+  }
+  .section h3 { font-size: 1.2em; color: #f0a500; margin: 28px 0 12px; }
+
+  .card {
+    background: #141410; border: 1px solid #2a2a20;
+    border-radius: 12px; padding: 24px; margin: 16px 0;
+  }
+  .card.highlight { border-left: 4px solid #f0a500; }
+  .card.red { border-left: 4px solid #e94560; }
+  .card.blue { border-left: 4px solid #8ecae6; }
+
+  .quote {
+    background: #1a1a10; border-left: 4px solid #f0a500;
+    padding: 20px 24px; margin: 16px 0; border-radius: 0 8px 8px 0;
+    font-style: italic; color: #ccc;
+  }
+  .quote .source { display: block; margin-top: 8px; font-style: normal; font-size: 0.85em; color: #888; }
+
+  .key {
+    background: linear-gradient(135deg, #1a1a0a, #2a2a10);
+    border: 1px solid #f0a500; border-radius: 10px;
+    padding: 20px 24px; margin: 20px 0;
+    text-align: center; font-size: 1.15em; font-weight: bold; color: #fff;
+  }
+
+  .flow {
+    background: #0f0f0a; border-radius: 8px; padding: 16px;
+    margin: 12px 0; text-align: center; font-size: 0.95em; color: #ccc;
+  }
+  .flow .arrow { color: #f0a500; font-size: 1.2em; }
+
+  .case {
+    background: #141410; border: 1px solid #2a2a20;
+    border-radius: 12px; padding: 24px; margin: 20px 0;
+  }
+  .case-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .case-num {
+    background: #f0a500; color: #000; width: 36px; height: 36px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: bold; flex-shrink: 0;
+  }
+  .case-title { font-size: 1.15em; font-weight: bold; color: #fff; }
+  .case-example { color: #8ecae6; font-size: 0.9em; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  th, td { padding: 12px 16px; border: 1px solid #2a2a20; text-align: left; }
+  th { background: #1a1a10; color: #f0a500; font-weight: bold; }
+  td { background: #141410; }
+
+  .vs-box {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;
+  }
+  .vs-item {
+    background: #141410; border: 1px solid #2a2a20;
+    border-radius: 10px; padding: 20px; text-align: center;
+  }
+  .vs-item.good { border-color: #4caf50; }
+  .vs-item.bad { border-color: #e94560; }
+  .vs-label { font-size: 0.85em; margin-bottom: 8px; }
+
+  .axis-item {
+    background: #141410; border: 1px solid #2a2a20;
+    border-radius: 12px; padding: 20px 24px; margin: 12px 0;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .axis-num {
+    background: #f0a500; color: #000; width: 32px; height: 32px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: bold; flex-shrink: 0;
+  }
+  .axis-content strong { display: block; color: #fff; margin-bottom: 6px; font-size: 1.05em; }
+  .axis-content span { color: #aaa; font-size: 0.95em; }
+
+  .bridge {
+    background: linear-gradient(135deg, #1a0a0a 0%, #0a1a1a 100%);
+    border: 2px solid #8ecae6; border-radius: 16px;
+    padding: 40px 32px; margin-top: 48px;
+  }
+  .bridge h2 { color: #8ecae6; font-size: 1.5em; margin-bottom: 24px; border: none; text-align: center; }
+
+  .conclusion {
+    background: linear-gradient(135deg, #1a1a0a 0%, #2a2a10 100%);
+    border: 2px solid #f0a500; border-radius: 16px;
+    padding: 40px 32px; margin-top: 48px; text-align: center;
+  }
+  .conclusion h2 { color: #f0a500; font-size: 1.5em; margin-bottom: 20px; border: none; }
+  .conclusion .big { font-size: 1.4em; color: #fff; font-weight: bold; line-height: 1.6; }
+
+  p { margin-bottom: 14px; }
+  strong { color: #fff; }
+  em { color: #f0a500; font-style: normal; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8em; }
+    .container { padding: 24px 16px 60px; }
+    .vs-box { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>孫子の兵法</h1>
+  <div class="subtitle">2500年前の戦略書から学ぶ「勝つための判断軸」</div>
+  <div class="author">著者：孫武 ｜ 読書まとめ完全版</div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#s1">孫子と「兵法」とは</a></li>
+    <li><a href="#s2">五事（5つの基本問題）＝戦う前の絶対チェック</a></li>
+    <li><a href="#s3">七計（7つの比較条件）＝敵と自分の実力診断</a></li>
+    <li><a href="#s4">なぜ条件を作ったのか？＝孫子の本当の核心</a></li>
+    <li><a href="#s5">勝利の見通し＝「勝ってから戦え」</a></li>
+    <li><a href="#s6">手段と目的の違い＝混同したら負ける</a></li>
+    <li><a href="#s7">戦わずして勝つ＝最高の勝ち方</a></li>
+    <li><a href="#s8">逃げる＝最強の積極戦略</a></li>
+    <li><a href="#s9">彼を知り己を知れば百戦殆うからず</a></li>
+    <li><a href="#s10">感情コントロール＝リーダー必須の能力</a></li>
+    <li><a href="#s11">将の5条件（呉子）</a></li>
+    <li><a href="#s12">水のように変化せよ</a></li>
+    <li><a href="#s13">背水の陣＝覚醒の仕組み</a></li>
+    <li><a href="#s14">孫子の判断軸（完全版）</a></li>
+    <li><a href="#s15">「論語と算盤」との共通点と違い</a></li>
+  </ol>
+</div>
+
+<!-- ===== S1 ===== -->
+<div class="section" id="s1">
+  <span class="section-number">01</span>
+  <h2>孫子と「兵法」とは</h2>
+
+  <div class="card blue">
+    <h3>孫武（紀元前544年頃〜紀元前496年頃）</h3>
+    <p>中国・春秋時代の軍事思想家。呉国の将軍として活躍。わずか13篇約6,000文字の中に、戦争の原理を凝縮した。2500年経った今も、ハーバードビジネススクール、ウエストポイント陸軍士官学校、ソフトバンク孫正義の経営にまで影響を与え続けている。</p>
+  </div>
+
+  <div class="card highlight">
+    <h3>この本の本質は一行で言える</h3>
+    <div class="key">
+      戦う前に勝て。感情ではなく計算で動け。
+    </div>
+    <p>孫子は「戦い方」の本ではない。<strong>「戦う前の設計（計算）」</strong>の本。原則は書物から学べるが、応用は実践からしか身につかない。だからこそ応用するための判断軸＝条件を先に持つことが最重要。</p>
+  </div>
+</div>
+
+<!-- ===== S2 ===== -->
+<div class="section" id="s2">
+  <span class="section-number">02</span>
+  <h2>五事（5つの基本問題）＝戦う前の絶対チェック</h2>
+
+  <p>孫子は戦争の前に必ず5つの要素を分析しろと言った。これが全ての土台になる。</p>
+
+  <table>
+    <tr><th>五事</th><th>原義</th><th>現代のビジネスで言うと</th><th>具体例</th></tr>
+    <tr><td><strong>道</strong></td><td>民がトップに共感しているか</td><td>ビジョン・カルチャー・求心力</td><td>Appleの「Think Different」。社員もユーザーも同じ価値観で動いた</td></tr>
+    <tr><td><strong>天</strong></td><td>天候・季節・タイミング</td><td>市場タイミング・景気</td><td>2022〜2026年のAIブーム。このタイミングにAI事業を始めるか否かで10年の差がつく</td></tr>
+    <tr><td><strong>地</strong></td><td>地形・地理的優位性</td><td>競争環境・ポジション</td><td>ブルーオーシャン（競合が少ない領域）を選ぶか、レッドオーシャンで消耗するか</td></tr>
+    <tr><td><strong>将</strong></td><td>将軍の能力</td><td>経営者・リーダーの質</td><td>孫正義は「将」の能力で300以上の企業に投資判断を下している</td></tr>
+    <tr><td><strong>法</strong></td><td>軍の制度・規律</td><td>組織設計・オペレーション</td><td>Toyotaの「カイゼン」。仕組みで品質を担保する</td></tr>
+  </table>
+
+  <div class="key">
+    この5つが揃っていない状態で戦うのは、地図なしで山に登るのと同じ。
+  </div>
+</div>
+
+<!-- ===== S3 ===== -->
+<div class="section" id="s3">
+  <span class="section-number">03</span>
+  <h2>七計（7つの比較条件）＝敵と自分の実力診断</h2>
+
+  <p>五事をさらに細かく「敵と比較する7項目」に落とし込んだのが七計。自分と相手をこの7つで冷静に比較する。</p>
+
+  <table>
+    <tr><th>#</th><th>七計</th><th>問い</th></tr>
+    <tr><td>1</td><td>主の道</td><td>どちらのリーダーが民（社員・顧客）に支持されているか？</td></tr>
+    <tr><td>2</td><td>将の能</td><td>どちらの幹部・チームが優秀か？</td></tr>
+    <tr><td>3</td><td>天地の利</td><td>どちらが環境・タイミングに恵まれているか？</td></tr>
+    <tr><td>4</td><td>法令の行</td><td>どちらの組織がルール通りに動けるか？</td></tr>
+    <tr><td>5</td><td>兵の強</td><td>どちらのリソース（資金・人材・技術）が多いか？</td></tr>
+    <tr><td>6</td><td>士卒の練</td><td>どちらのメンバーが鍛えられているか？</td></tr>
+    <tr><td>7</td><td>賞罰の明</td><td>どちらの評価制度がフェアか？</td></tr>
+  </table>
+
+  <div class="card highlight">
+    <p><strong>なぜ7つ全部を比較するのか？</strong></p>
+    <p>1つや2つ勝っていても安心できない。例えば資金力（兵の強）で圧倒的に勝っていても、リーダーが無能（将の能で劣る）なら負ける。太平洋戦争で日本はゼロ戦という兵器で局所的に勝っていたが、情報戦（将の能）とリソース（兵の強）で圧倒的に劣っていた。7項目中5項目で負けていたら、勝てるはずがない。</p>
+  </div>
+</div>
+
+<!-- ===== S4 ===== -->
+<div class="section" id="s4">
+  <span class="section-number">04</span>
+  <h2>なぜ条件を作ったのか？＝孫子の本当の核心</h2>
+
+  <div class="quote">
+    「勝兵は先ず勝ちて後に戦いを求む。敗兵は先ず戦いて後に勝を求む。」
+    <span class="source">— 孫子・形篇</span>
+  </div>
+
+  <div class="card red">
+    <p><strong>勝つ軍は、まず勝てる状態を作ってから戦う。負ける軍は、まず戦ってから勝とうとする。</strong></p>
+    <p>なぜ条件を先に作るのか？ 答えはシンプル：</p>
+    <div class="key">人間は感情で判断をミスるから。</div>
+    <p>怒り、プライド、焦り。これらが発動した瞬間、人は冷静な判断ができなくなる。だから孫子は「感情で戦うな。計算で戦え」と言った。条件を先に作っておけば、感情に振り回されずに「Go / No-Go」を判断できる。</p>
+  </div>
+</div>
+
+<!-- ===== S5 ===== -->
+<div class="section" id="s5">
+  <span class="section-number">05</span>
+  <h2>勝利の見通し＝「勝ってから戦え」</h2>
+
+  <div class="card highlight">
+    <p>勝利の条件が揃って初めて戦う。条件が揃わなければ戦わない。これが孫子の鉄則。</p>
+    <p>無駄な戦力の消費を避け、勝てる戦いだけに集中する。</p>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num">例</div>
+      <div>
+        <div class="case-title">Amazon：20年赤字でも市場支配を優先</div>
+      </div>
+    </div>
+    <p>ジェフ・ベゾスは1997年〜2015年まで、ほぼ利益ゼロの状態でAmazonを運営した。投資家から批判されても「勝てる構造を作ってから利益を取る」を徹底。その結果、2024年時点で時価総額は約2兆ドル（約300兆円）に到達。</p>
+    <div class="flow">
+      勝てる構造を設計 <span class="arrow">→</span> 20年かけて市場を支配 <span class="arrow">→</span> 利益回収フェーズへ
+    </div>
+    <p>これが「先ず勝ちて後に戦いを求む」の現代版。最初から勝ってた。</p>
+  </div>
+</div>
+
+<!-- ===== S6 ===== -->
+<div class="section" id="s6">
+  <span class="section-number">06</span>
+  <h2>手段と目的の違い＝混同したら負ける</h2>
+
+  <div class="quote">
+    「戦争は政治目的の手段に過ぎない。」
+    <span class="source">— クラウゼヴィッツ（孫子と同じ思想）</span>
+  </div>
+
+  <div class="card highlight">
+    <p>ここはめちゃくちゃ重要な概念。</p>
+    <p><strong>目的</strong>＝何を達成したいか（ゴール）</p>
+    <p><strong>手段</strong>＝そのための方法（ツール）</p>
+  </div>
+
+  <table>
+    <tr><th></th><th>目的</th><th>手段</th></tr>
+    <tr><td>戦争</td><td>政治的支配・安全保障</td><td>戦闘行為</td></tr>
+    <tr><td>ビジネス</td><td>市場支配・利益・顧客への価値提供</td><td>広告、採用、AI、SNS</td></tr>
+    <tr><td>個人</td><td>上場企業の社長になる</td><td>英語力、AI実践力、人脈、経験</td></tr>
+  </table>
+
+  <div class="card red">
+    <h3>手段が目的化すると何が起きるか</h3>
+    <p><strong>太平洋戦争の日本</strong>がまさにこれ。「勝つ」ことが目的だったはずが、途中から「戦い続ける」こと自体が目的になった。撤退すべき戦場（ガダルカナル等）に兵力を投入し続け、約310万人の命が失われた。</p>
+    <p>手段と目的を分けられなかった代償は、計り知れない。</p>
+  </div>
+
+  <div class="key">
+    AIも、SNSも、英語も、全部「手段」。<br>
+    目的を見失った瞬間、手段に振り回される。
+  </div>
+</div>
+
+<!-- ===== S7 ===== -->
+<div class="section" id="s7">
+  <span class="section-number">07</span>
+  <h2>戦わずして勝つ＝最高の勝ち方</h2>
+
+  <div class="quote">
+    「百戦百勝は善の善なるものにあらず。戦わずして人の兵を屈するは善の善なるものなり。」
+    <span class="source">— 孫子・謀攻篇</span>
+  </div>
+
+  <div class="card highlight">
+    <p>100回戦って100回勝つのは最善ではない。戦わずに相手を屈服させるのが最善。なぜなら戦えば必ずコスト（人、金、時間、信用）がかかるから。<strong>コストゼロで勝つ</strong>のが理想。</p>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num" style="background:#4caf50;">成</div>
+      <div>
+        <div class="case-title">豊臣秀吉の天下統一</div>
+      </div>
+    </div>
+    <p>秀吉は武力だけでなく「調略」（交渉で敵を味方にする）を多用した。北条氏との小田原征伐では、20万の大軍で包囲して「戦わずに降伏」を引き出した。結果、わずか3ヶ月で関東を平定。戦力の損耗を最小限に抑えて天下統一を達成。</p>
+    <p>秀吉にとって目的は「天下統一」であり、戦闘はあくまで手段。だから戦わないで済むならそれが最善だった。</p>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num" style="background:#4caf50;">成</div>
+      <div>
+        <div class="case-title">Googleの人材獲得戦略</div>
+      </div>
+    </div>
+    <p>Googleは競合と直接戦うのではなく、優秀な人材を先に確保して競合の戦力を削ぐ。年間約2万人を採用し、業界最高水準の待遇を提供。競合は人材を失い、戦わずしてGoogleに負ける構造。</p>
+  </div>
+</div>
+
+<!-- ===== S8 ===== -->
+<div class="section" id="s8">
+  <span class="section-number">08</span>
+  <h2>逃げる＝最強の積極戦略</h2>
+
+  <div class="quote">
+    「三十六計、逃げるに如かず。」
+    <span class="source">— 兵法三十六計</span>
+  </div>
+
+  <div class="card highlight">
+    <p>「逃げる」は弱さではない。勝てない戦いに固執して消耗するほうが弱い。負け戦を避ければ損失ゼロ。次の勝てる戦いに全リソースを投入できる。</p>
+  </div>
+
+  <div class="vs-box">
+    <div class="vs-item good">
+      <div class="vs-label" style="color:#4caf50;"><strong>逃げて勝った例</strong></div>
+      <p><strong>Netflix</strong></p>
+      <p>2007年、DVDレンタルからストリーミングへ完全移行。当時のDVD売上を捨てた。現在の時価総額は約3,500億ドル。「逃げた」からこそ勝てた。</p>
+    </div>
+    <div class="vs-item bad">
+      <div class="vs-label" style="color:#e94560;"><strong>逃げなくて負けた例</strong></div>
+      <p><strong>Kodak</strong></p>
+      <p>デジタルカメラを1975年に自社で発明したのに、フィルム事業に固執。2012年に経営破綻。「逃げる」べき戦場から逃げなかった。</p>
+    </div>
+  </div>
+
+  <div class="key">
+    逃げるべき時に逃げないのは「勇気」ではなく「判断ミス」。
+  </div>
+</div>
+
+<!-- ===== S9 ===== -->
+<div class="section" id="s9">
+  <span class="section-number">09</span>
+  <h2>彼を知り己を知れば百戦殆うからず</h2>
+
+  <div class="quote">
+    「彼を知り己を知れば百戦して殆うからず。彼を知らず己を知れば一勝一負す。彼を知らず己を知らざれば戦う毎に必ず殆うし。」
+    <span class="source">— 孫子・謀攻篇</span>
+  </div>
+
+  <div class="card highlight">
+    <h3>勝利のための5ヶ条</h3>
+    <p>① <strong>勝てる戦だけする</strong> — 勝算がないなら戦わない</p>
+    <p>② <strong>大小の戦力運用を理解する</strong> — リソースの使い方を間違えない</p>
+    <p>③ <strong>組織が統一されている</strong> — 上と下の目的が一致している</p>
+    <p>④ <strong>準備万端</strong> — 備えが十分な状態で挑む</p>
+    <p>⑤ <strong>有能な将 + 干渉されない</strong> — 優秀なリーダーに任せ、上が邪魔しない</p>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num" style="background:#4caf50;">成</div>
+      <div>
+        <div class="case-title">Toyota：情報収集の徹底で世界一へ</div>
+      </div>
+    </div>
+    <p>Toyotaは「現地現物」（現場に行って自分の目で確認する）を徹底。アメリカ市場に進出する際、現地の道路状況、ユーザーの使い方、競合の弱点を全て調査してから製品を投入。2023年、世界販売台数1位（約1,123万台）。「彼を知り己を知る」を組織の文化にした結果。</p>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num" style="background:#e94560;">敗</div>
+      <div>
+        <div class="case-title">太平洋戦争：日本の情報戦敗北</div>
+      </div>
+    </div>
+    <p>日本は「神国だから勝つ」と精神論で戦った。一方アメリカは、日本の新聞・雑誌を全て収集し、暗号を解読し、艦長の名前・経歴・性格まで調べ上げた。ミッドウェー海戦では暗号解読により日本の作戦を事前に把握し、4隻の空母を撃沈。</p>
+    <p><strong>「彼を知り」を徹底した側が勝ち、「己を知らず」だった側が負けた。</strong>孫子の理論通りの結果。</p>
+  </div>
+</div>
+
+<!-- ===== S10 ===== -->
+<div class="section" id="s10">
+  <span class="section-number">10</span>
+  <h2>感情コントロール＝リーダー必須の能力</h2>
+
+  <div class="card red">
+    <h3>「敵を殺すは怒なり、敵の利を取るは貨なり」</h3>
+    <p>怒りで動くと損する。利益で動くと勝つ。</p>
+  </div>
+
+  <div class="vs-box">
+    <div class="vs-item bad">
+      <div class="vs-label" style="color:#e94560;"><strong>感情経営（怒）</strong></div>
+      <p>競合にムカついて価格戦争を仕掛ける → 全員が消耗 → 利益ゼロ</p>
+    </div>
+    <div class="vs-item good">
+      <div class="vs-label" style="color:#4caf50;"><strong>利益思考（貨）</strong></div>
+      <p>利益が取れる市場だけ攻める → Apple：スマホ市場利益の綄85%を独占（価格競争しない）</p>
+    </div>
+  </div>
+
+  <div class="card highlight">
+    <p>孫子は「怒りで動くリーダーは必ず負ける」と断言している。感情をコントロールする方法はたった一つ：<strong>目的を明確にすること。</strong>目的が明確なら、目の前の感情に振り回されない。</p>
+  </div>
+</div>
+
+<!-- ===== S11 ===== -->
+<div class="section" id="s11">
+  <span class="section-number">11</span>
+  <h2>将の5条件（呉子より）</h2>
+
+  <p>孫武と並ぶ兵法家・呉起が示した、リーダーに必要な5つの資質。</p>
+
+  <table>
+    <tr><th>条件</th><th>原義</th><th>現代のリーダーで言うと</th></tr>
+    <tr><td><strong>理</strong></td><td>論理的思考</td><td>戦略を設計できる力。データと根拠で意思決定する</td></tr>
+    <tr><td><strong>備</strong></td><td>準備力</td><td>最悪のシナリオまで想定してオペレーションを組む</td></tr>
+    <tr><td><strong>果</strong></td><td>決断力</td><td>情報が不完全でも判断できる。迷って動かないのが最悪</td></tr>
+    <tr><td><strong>戒</strong></td><td>リスク管理</td><td>成功時にこそ警戒する。慢心を防ぐ</td></tr>
+    <tr><td><strong>約</strong></td><td>統制力</td><td>チームをまとめ、規律を守らせる。マネジメント力</td></tr>
+  </table>
+</div>
+
+<!-- ===== S12 ===== -->
+<div class="section" id="s12">
+  <span class="section-number">12</span>
+  <h2>水のように変化せよ</h2>
+
+  <div class="quote">
+    「兵の形は水に象る。」
+    <span class="source">— 孫子・虚実篇</span>
+  </div>
+
+  <div class="card highlight">
+    <p>水は容器の形に合わせて変化する。軍隊も同じで、状況に応じて柔軟に変化しなければならない。固定された戦略はいつか破られる。</p>
+    <p>全天候型（どこでも戦える）、全自責（失敗は全て自分の責任として改善する）。この2つを持つ組織が最強。</p>
+  </div>
+
+  <div class="key">
+    固定は死。変化こそ生存。
+  </div>
+</div>
+
+<!-- ===== S13 ===== -->
+<div class="section" id="s13">
+  <span class="section-number">13</span>
+  <h2>背水の陣＝覚醒の仕組み</h2>
+
+  <div class="card highlight">
+    <p>孫子は「死地に追いやると、人は覚醒する」と言った。退路を断つことで、メンバー一人一人が本気になり、協力し合い、能力以上の成果を出す。</p>
+  </div>
+
+  <div class="card blue">
+    <h3>現代で「背水の陣」を作る方法</h3>
+    <p><strong>① 期限を切る</strong> — 「いつかやる」は永遠にやらない。「3月末まで」と決める</p>
+    <p><strong>② 資金に制限をかける</strong> — 無限のリソースは甘えを生む</p>
+    <p><strong>③ 公言する</strong> — Xで宣言すれば引けなくなる</p>
+    <p><strong>④ 環境を変える</strong> — 退路を断つために新しい場所・新しい仕事に飛び込む</p>
+  </div>
+</div>
+
+<!-- ===== S14 ===== -->
+<div class="section" id="s14">
+  <span class="section-number">14</span>
+  <h2>孫子の判断軸（完全版）</h2>
+
+  <p>何か行動する前に、この5つを自分に問いかける：</p>
+
+  <div class="axis-item">
+    <div class="axis-num">1</div>
+    <div class="axis-content">
+      <strong>勝てるか？（Yesでなければやるな）</strong>
+      <span>五事・七計で冷静に分析したか？ 感覚じゃなくて根拠があるか？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">2</div>
+    <div class="axis-content">
+      <strong>目的は何か？</strong>
+      <span>手段が目的化していないか？ 本当に達成したいことは何か？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">3</div>
+    <div class="axis-content">
+      <strong>手段は最適か？</strong>
+      <span>もっと楽に勝てる方法はないか？ 戦わずに済む方法はないか？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">4</div>
+    <div class="axis-content">
+      <strong>感情で動いてないか？</strong>
+      <span>怒り・プライド・焦りで判断していないか？ 冷静か？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">5</div>
+    <div class="axis-content">
+      <strong>逃げるべきか？</strong>
+      <span>勝てない戦いに固執していないか？ 撤退して次に集中すべきか？</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S15: BRIDGE ===== -->
+<div class="bridge" id="s15">
+  <h2>「論語と算盤」との共通点と違い</h2>
+
+  <p style="text-align:center; margin-bottom:24px;">渋沢栄一（論語と算盤）と孫武（孫子の兵法）。時代も国も違う2人だが、言っていることの根っこは驚くほど共通している。</p>
+
+  <table>
+    <tr><th>テーマ</th><th>論語と算盤（渋沢栄一）</th><th>孫子の兵法（孫武）</th></tr>
+    <tr><td><strong>感情を制御せよ</strong></td><td>欲・恐怖・承認欲求に負けるな</td><td>怒りで動くリーダーは必ず負ける</td></tr>
+    <tr><td><strong>仕組みで勝て</strong></td><td>論語×算盤＝人間の弱さに勝つ仕組み</td><td>五事×七計＝感情排除の判断フレーム</td></tr>
+    <tr><td><strong>長期視点</strong></td><td>目先の利益より信用の積み上げ</td><td>戦う前に勝てる構造を作れ</td></tr>
+    <tr><td><strong>現実を直視しろ</strong></td><td>算盤＝数字で嘘を防ぐ</td><td>彼を知り己を知る＝情報で判断</td></tr>
+    <tr><td><strong>逃げる勇気</strong></td><td>身の丈を知る（蟹は甲羅に似せて穴を掘る）</td><td>三十六計、逃げるに如かず</td></tr>
+    <tr><td><strong>目的を忘れるな</strong></td><td>学問の目的＝自分の向上（売るためじゃない）</td><td>戦争は手段。目的を見失うな</td></tr>
+  </table>
+
+  <div class="card" style="margin-top:24px; border-left:4px solid #8ecae6;">
+    <h3>違いは「視点の角度」</h3>
+    <p><strong>渋沢栄一</strong>は「内側」から。自分の心を鍛え、道徳と経済を両立させることで長期的に成功する。</p>
+    <p><strong>孫子</strong>は「外側」から。環境・敵・条件を冷静に分析し、計算で勝てる構造を設計する。</p>
+    <p>つまり<strong>両方を持つのが最強</strong>。内側（心・道徳）× 外側（分析・戦略）。</p>
+  </div>
+
+  <div class="key" style="margin-top:20px; border-color:#8ecae6;">
+    論語＝心の判断軸（ブレないため）<br>
+    孫子＝頭の判断軸（負けないため）<br><br>
+    この2つを両方持つ人間は、ほぼ無敵。
+  </div>
+</div>
+
+<!-- ===== CONCLUSION ===== -->
+<div class="conclusion">
+  <h2>結論</h2>
+  <div class="big">
+    孫子の本質は「戦い方」ではない。<br><br>
+    <span style="color:#f0a500;">「戦う前に、勝てる設計をしろ」</span><br><br>
+    そして判断軸を持つことで<br>
+    感情に振り回されず、迷わず動ける。
+  </div>
+  <p style="margin-top:24px; color:#888; font-size:0.9em;">
+    条件を持っている者は迷わない。迷わない者は、速い。速い者は、勝つ。
+  </p>
+</div>
+
+</div>
+</body>
+                                               </html>
