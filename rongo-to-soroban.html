@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>論語と算盤｜読書まとめ完全版</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.85;
+    font-size: 16px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 80px 20px 60px;
+    text-align: center;
+    border-bottom: 3px solid #e94560;
+  }
+  .hero h1 {
+    font-size: 2.6em;
+    color: #fff;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 1.1em;
+    color: #aaa;
+    margin-bottom: 8px;
+  }
+  .hero .author {
+    font-size: 0.95em;
+    color: #777;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    background: #141420;
+    border: 1px solid #2a2a40;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .toc h2 {
+    font-size: 1.2em;
+    color: #e94560;
+    margin-bottom: 16px;
+  }
+  .toc ol {
+    padding-left: 20px;
+  }
+  .toc li {
+    margin-bottom: 8px;
+  }
+  .toc a {
+    color: #8ecae6;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: #e94560; }
+
+  /* ===== SECTION ===== */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-number {
+    display: inline-block;
+    background: #e94560;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .section h2 {
+    font-size: 1.6em;
+    color: #fff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2a2a40;
+  }
+  .section h3 {
+    font-size: 1.2em;
+    color: #e94560;
+    margin: 28px 0 12px;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: #141420;
+    border: 1px solid #2a2a40;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+  }
+  .card.highlight {
+    border-left: 4px solid #e94560;
+  }
+  .card.blue {
+    border-left: 4px solid #8ecae6;
+  }
+  .card.gold {
+    border-left: 4px solid #f0a500;
+  }
+
+  /* ===== QUOTE ===== */
+  .quote {
+    background: #1a1a2e;
+    border-left: 4px solid #f0a500;
+    padding: 20px 24px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #ccc;
+  }
+  .quote .source {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-size: 0.85em;
+    color: #888;
+  }
+
+  /* ===== KEY POINT ===== */
+  .key {
+    background: linear-gradient(135deg, #1a0a0a, #2a1020);
+    border: 1px solid #e94560;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  /* ===== FAILURE CASE ===== */
+  .case {
+    background: #141420;
+    border: 1px solid #2a2a40;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .case-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .case-num {
+    background: #e94560;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .case-title {
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #fff;
+  }
+  .case-example {
+    color: #8ecae6;
+    font-size: 0.9em;
+  }
+  .flow {
+    background: #0f0f1a;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+    text-align: center;
+    font-size: 0.95em;
+    color: #ccc;
+  }
+  .flow .arrow { color: #e94560; font-size: 1.2em; }
+  .shibusawa-says {
+    background: #1a1a10;
+    border-left: 3px solid #f0a500;
+    padding: 12px 16px;
+    margin-top: 12px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95em;
+  }
+
+  /* ===== AXIS ===== */
+  .axis-item {
+    background: #141420;
+    border: 1px solid #2a2a40;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .axis-num {
+    background: #f0a500;
+    color: #000;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 0.95em;
+  }
+  .axis-content strong {
+    display: block;
+    color: #fff;
+    margin-bottom: 6px;
+    font-size: 1.05em;
+  }
+  .axis-content span {
+    color: #aaa;
+    font-size: 0.95em;
+  }
+
+  /* ===== CONCLUSION ===== */
+  .conclusion {
+    background: linear-gradient(135deg, #1a0a0a 0%, #2a1020 100%);
+    border: 2px solid #e94560;
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-top: 48px;
+    text-align: center;
+  }
+  .conclusion h2 {
+    color: #e94560;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border: none;
+  }
+  .conclusion .big {
+    font-size: 1.4em;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.6;
+  }
+
+  /* ===== TABLE ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+  th, td {
+    padding: 12px 16px;
+    border: 1px solid #2a2a40;
+    text-align: left;
+  }
+  th {
+    background: #1a1a2e;
+    color: #e94560;
+    font-weight: bold;
+  }
+  td { background: #141420; }
+
+  p { margin-bottom: 14px; }
+  strong { color: #fff; }
+  em { color: #f0a500; font-style: normal; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8em; }
+    .container { padding: 24px 16px 60px; }
+    .card, .case { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <h1>論語と算盤</h1>
+  <div class="subtitle">渋沢栄一の思想から学ぶ「人生の判断軸」</div>
+  <div class="author">著者：渋沢栄一 ｜ 読書まとめ完全版</div>
+</div>
+
+<div class="container">
+
+<!-- ===== TOC ===== -->
+<div class="toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#s1">渋沢栄一と「論語と算盤」とは</a></li>
+    <li><a href="#s2">孔子と論語の基本</a></li>
+    <li><a href="#s3">核心①｜学問の本質＝自分を向上させるため</a></li>
+    <li><a href="#s4">核心②｜心を鍛えることの重要性</a></li>
+    <li><a href="#s5">核心③｜論語×算盤＝道徳と経済の一致</a></li>
+    <li><a href="#s6">核心④｜天命を信じて目の前に集中する</a></li>
+    <li><a href="#s7">核心⑤｜身の丈を知る＋意欲を忘れない</a></li>
+    <li><a href="#s8">核心⑥｜得意な時と失意な時の心構え</a></li>
+    <li><a href="#s9">渋沢の思想を無視して失敗した事例5選</a></li>
+    <li><a href="#s10">なぜ経営者は終わるのか（本質）</a></li>
+    <li><a href="#s11">人を狂わせる3つの感情</a></li>
+    <li><a href="#s12">深い判断軸（完全版）</a></li>
+    <li><a href="#s13">結論｜最も大事なこと</a></li>
+  </ol>
+</div>
+
+<!-- ===== SECTION 1 ===== -->
+<div class="section" id="s1">
+  <span class="section-number">01</span>
+  <h2>渋沢栄一と「論語と算盤」とは</h2>
+
+  <div class="card blue">
+    <h3>渋沢栄一（1840-1931）</h3>
+    <p>日本資本主義の父と呼ばれる人物。生涯で約500の企業の設立・経営に関わった。みずほ銀行、東京ガス、東京海上日動、キリンビール、帝国ホテルなど、現在も続く大企業の多くに関与。</p>
+    <p>ただ金を稼いだのではなく、<strong>「道徳と経済は一致すべき」</strong>という信念を生涯貫いた。その思想をまとめたのがこの本。</p>
+  </div>
+
+  <div class="card blue">
+    <h3>「論語と算盤」とは？</h3>
+    <p><em>論語</em>＝道徳・人としての正しさ（心）</p>
+    <p><em>算盤</em>＝経済・ビジネス・利益（実力）</p>
+    <p>この2つは対立するものではなく、<strong>両方揃って初めて本当の成功になる</strong>という主張。お金だけ追っても破滅する。道徳だけでは生きていけない。両方のバランスが必要。</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 2 ===== -->
+<div class="section" id="s2">
+  <span class="section-number">02</span>
+  <h2>孔子と論語の基本</h2>
+
+  <div class="card blue">
+    <h3>孔子（紀元前551年〜紀元前479年）</h3>
+    <p>中国・春秋時代の思想家。儒教の創始者。戦乱の時代に「人はどう生きるべきか」「国はどう治めるべきか」を説いた。弟子たちとの対話録が「論語」としてまとめられた。</p>
+  </div>
+
+  <div class="card blue">
+    <h3>論語の核心キーワード</h3>
+    <table>
+      <tr><th>概念</th><th>意味</th><th>現代で言うと</th></tr>
+      <tr><td><strong>仁（じん）</strong></td><td>他者への思いやり・人間愛</td><td>自分の利益だけでなく、周囲にも価値を届ける姿勢</td></tr>
+      <tr><td><strong>義（ぎ）</strong></td><td>正しい行い・筋を通す</td><td>損しても正しいことを選ぶ判断力</td></tr>
+      <tr><td><strong>礼（れい）</strong></td><td>敬意・社会のルール</td><td>チームワーク・リスペクト</td></tr>
+      <tr><td><strong>智（ち）</strong></td><td>物事の道理を見抜く知恵</td><td>情報リテラシー・本質を見る力</td></tr>
+      <tr><td><strong>信（しん）</strong></td><td>嘘をつかない・約束を守る</td><td>信用・ブランド力</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== SECTION 3 ===== -->
+<div class="section" id="s3">
+  <span class="section-number">03</span>
+  <h2>核心①｜学問の本質＝自分を向上させるため</h2>
+
+  <div class="quote">
+    「昔の人間は自分の向上のために学問をした。今の人間は自分をうるために学問をする。」
+    <span class="source">— 論語と算盤より</span>
+  </div>
+
+  <div class="card highlight">
+    <p><strong>現代語訳：</strong>昔の人は「自分を高めたい」から学んだ。今の人は「自分をアピールしたい」「稼ぎたい」から学ぶ。</p>
+    <p>つまり、学問の目的がズレてしまっている。資格をとるため、評価されるためではなく、<strong>自分の人間としてのレベルを上げるため</strong>に学ぶのが本来の姿。</p>
+  </div>
+
+  <div class="card gold">
+    <h3>では自分を向上させるにはどうすればいいか？</h3>
+    <p>① <strong>心を磨く</strong> — 感情のコントロール、誠実さ</p>
+    <p>② <strong>善悪を明確にするために歴史を学ぶ</strong> — 過去の失敗と成功から判断基準を作る</p>
+    <p>③ <strong>成功者と触れる・真似をする</strong> — 環境で人は変わる</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 4 ===== -->
+<div class="section" id="s4">
+  <span class="section-number">04</span>
+  <h2>核心②｜心を鍛えることの重要性</h2>
+
+  <div class="quote">
+    「スキルはその場その場で変わるし、つけられる。しかし心は鍛えられない。優先度が高くないから。」
+    <span class="source">— GAテクノロジーズ社長の言葉として</span>
+  </div>
+
+  <div class="card highlight">
+    <p>プログラミング、営業力、マーケティング…スキルは後からいくらでもつけられる。しかし<strong>心（メンタル・人間性・誠実さ）は、意識しないと絶対に鍛えられない。</strong></p>
+    <p>なぜなら「今すぐ必要」と感じないから。でもこれが壊れると、何もかも崩れる。スキルがあっても心がなければ、信用を失い、全てを失う。</p>
+  </div>
+
+  <div class="key">
+    心＝変わらない土台。スキル＝変わる武器。<br>
+    土台がなければ、どんな武器も意味がない。
+  </div>
+</div>
+
+<!-- ===== SECTION 5 ===== -->
+<div class="section" id="s5">
+  <span class="section-number">05</span>
+  <h2>核心③｜論語×算盤＝道徳と経済の一致</h2>
+
+  <div class="card highlight">
+    <p>渋沢は<strong>「お金を稼ぐこと自体は悪くない。でも正しい方法で稼げ」</strong>と説いた。</p>
+    <p>お金という欲望にエンジンがかかると大きな惨事を引き起こす。バブル崩壊、金融危機…歴史を見れば数え切れない。</p>
+  </div>
+
+  <table>
+    <tr><th></th><th>論語だけ</th><th>算盤だけ</th><th>論語×算盤</th></tr>
+    <tr><td><strong>状態</strong></td><td>正しいけど貧しい</td><td>儲かるけど嘘つき</td><td>正しく稼ぐ</td></tr>
+    <tr><td><strong>結果</strong></td><td>理想倒れ</td><td>信用崩壊で破滅</td><td>持続的な成功</td></tr>
+    <tr><td><strong>現代例</strong></td><td>ボランティアだけで生活苦</td><td>詐欺・不正会計</td><td>信頼される経営者</td></tr>
+  </table>
+</div>
+
+<!-- ===== SECTION 6 ===== -->
+<div class="section" id="s6">
+  <span class="section-number">06</span>
+  <h2>核心④｜天命を信じて目の前に集中する</h2>
+
+  <div class="quote">
+    「人の一生は重荷物を負うて遠き道をいくがごとし。」
+    <span class="source">— 徳川家康（渋沢が引用）</span>
+  </div>
+
+  <div class="card highlight">
+    <p><strong>訳：</strong>指導的な立場の人間は、広い視野と強い意志が必要。「仁」の実現を仕事とする以上、重い責任を死ぬまで背負って歩き続ける覚悟がいる。</p>
+    <p>ここで大事なのは2つ：</p>
+    <p>① <strong>視野の広さ・長期視点</strong> — 目先の損得で動かない</p>
+    <p>② <strong>一つのことに集中する</strong> — あれこれ手を出さない</p>
+  </div>
+
+  <div class="card gold">
+    <p>どんなに頭を悩ませても、結局は天命。だから目の前のことに全力を尽くす。スティーブ・ジョブズが言った「点は後からつながる（Connecting the dots）」と同じ。<strong>素直に信じて、今に集中できるか。</strong></p>
+  </div>
+</div>
+
+<!-- ===== SECTION 7 ===== -->
+<div class="section" id="s7">
+  <span class="section-number">07</span>
+  <h2>核心⑤｜身の丈を知る＋意欲を忘れない</h2>
+
+  <div class="quote">
+    「蟹は甲羅に似せて穴を掘る。」
+    <span class="source">— 渋沢栄一</span>
+  </div>
+
+  <div class="card highlight">
+    <p><strong>意味：</strong>蟹は自分の体に合った大きさの穴を掘る。人も同じで、<strong>自分の能力・実力に見合った行動をする</strong>のが大事。背伸びしすぎると崩壊する。</p>
+    <p>ただし渋沢は同時にこうも言っている：<strong>身の丈ばかり考えて、意欲的に新しいことをする気持ちを忘れてはならない。</strong></p>
+  </div>
+
+  <div class="key">
+    身の丈を知りつつ、挑戦する気持ちは持ち続ける。<br>
+    「分をわきまえる」と「守りに入る」は違う。
+  </div>
+</div>
+
+<!-- ===== SECTION 8 ===== -->
+<div class="section" id="s8">
+  <span class="section-number">08</span>
+  <h2>核心⑥｜得意な時と失意な時の心構え</h2>
+
+  <div class="card highlight">
+    <p>些細なことから大きなことが生まれる。しかし大きなことを言わないと大きなことは成し遂げられない。</p>
+    <p><strong>具体的に言うと：</strong></p>
+    <p>① <em>毎日の小さな積み重ね</em>が大きな結果を生む（ユニクロ柳井氏も同じことを言っている）</p>
+    <p>② でも<em>大きなビジョン</em>がなければ方向が定まらない</p>
+    <p>つまり「大きな夢」と「目の前の地味な努力」の両方が必要。</p>
+  </div>
+
+  <div class="card gold">
+    <h3>サイバーエージェント藤田氏の教え</h3>
+    <p><strong>良い時は「調子に乗らないよう自分を律する」</strong></p>
+    <p><strong>悪い時は「必要以上に落ち込まない」</strong></p>
+    <p>この2つで心を安定に保つ。調子に乗ることは最大の弱点。プロになれなかった理由もここにある、と自身を振り返っている。</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 9 ===== -->
+<div class="section" id="s9">
+  <span class="section-number">09</span>
+  <h2>渋沢の思想を無視して失敗した事例5選</h2>
+
+  <!-- Case 1 -->
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num">1</div>
+      <div>
+        <div class="case-title">短期利益だけを追った崩壊</div>
+        <div class="case-example">事例：リーマンショック（2008年）</div>
+      </div>
+    </div>
+    <p>返済能力のない人にも住宅ローンを売り、それを金融商品にして世界中に拡散。「儲かるからやる」だけで倫理が完全に欠けていた。</p>
+    <div class="flow">
+      短期利益 + 倫理無視 <span class="arrow">→</span> 信用崩壊 <span class="arrow">→</span> 世界で数百兆円規模の損失
+    </div>
+    <div class="shibusawa-says">
+      渋沢的に言うと：<strong>算盤だけ、論語ゼロ</strong>
+    </div>
+  </div>
+
+  <!-- Case 2 -->
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num">2</div>
+      <div>
+        <div class="case-title">組織ぐるみの不正</div>
+        <div class="case-example">事例：東芝の不正会計問題</div>
+      </div>
+    </div>
+    <p>上からのプレッシャーで現場が利益を水増し。「数字を守れ」が絶対命令。正しさより評価を優先した。</p>
+    <div class="flow">
+      短期の体裁維持 <span class="arrow">→</span> 嘘が積み重なる <span class="arrow">→</span> 一気に崩壊
+    </div>
+    <div class="shibusawa-says">
+      渋沢的に言うと：<strong>論語を捨てた瞬間、算盤も壊れる</strong>
+    </div>
+  </div>
+
+  <!-- Case 3 -->
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num">3</div>
+      <div>
+        <div class="case-title">成功して慢心 → 崩壊</div>
+        <div class="case-example">事例：WeWork</div>
+      </div>
+    </div>
+    <p>急成長で評価額数兆円に。しかし中身は赤字だらけ。調子いい時に拡大しすぎ、ガバナンス（統制）なし。</p>
+    <div class="flow">
+      成功 <span class="arrow">→</span> 慢心 <span class="arrow">→</span> 無駄な投資 <span class="arrow">→</span> 崩壊
+    </div>
+    <div class="shibusawa-says">
+      渋沢的に言うと：<strong>心を鍛えていない（欲に負けた）</strong>
+    </div>
+  </div>
+
+  <!-- Case 4 -->
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num">4</div>
+      <div>
+        <div class="case-title">競争から逃げた国</div>
+        <div class="case-example">事例：清朝の衰退</div>
+      </div>
+    </div>
+    <p>外の世界を拒否し、技術革新を止めた。安定を優先して競争を避けた結果、外から壊された。</p>
+    <div class="flow">
+      競争なし <span class="arrow">→</span> 成長なし <span class="arrow">→</span> 外から壊される
+    </div>
+    <div class="shibusawa-says">
+      渋沢的に言うと：<strong>学問（進化）を止めた</strong>
+    </div>
+  </div>
+
+  <!-- Case 5 -->
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num">5</div>
+      <div>
+        <div class="case-title">個人レベルの失敗（3G問題）</div>
+        <div class="case-example">事例：経営者が終わるパターン</div>
+      </div>
+    </div>
+    <p>調子いい時に遊ぶ。ギャンブル・ゴルフ・女（3G）に逃げる。これらは「現実から逃げるための快楽装置」。</p>
+    <div class="flow">
+      問題発生 <span class="arrow">→</span> 不快（ストレス） <span class="arrow">→</span> 逃避（3G・スマホ・遊び） <span class="arrow">→</span> 問題悪化 <span class="arrow">→</span> さらに逃げる（無限ループ）
+    </div>
+    <div class="card" style="margin-top:16px; background:#1a1a10;">
+      <p><strong>数字で見ると：</strong></p>
+      <p>1日3時間遊び = 年間 約1,000時間</p>
+      <p>→ 本200冊分 / スキル2つ分 / 年収100〜300万の差</p>
+      <p><strong>時間と金＝資本。これをどこに使うかで人生が決まる。</strong></p>
+    </div>
+    <div class="shibusawa-says">
+      渋沢的に言うと：<strong>自分に不誠実（論語崩壊）</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 10 ===== -->
+<div class="section" id="s10">
+  <span class="section-number">10</span>
+  <h2>なぜ経営者は終わるのか（本質）</h2>
+
+  <div class="card highlight">
+    <p>3Gは表面的な話。本質はもっと深い。</p>
+    <p><strong>経営者が終わる本当の理由 = 「現実を直視できなくなった瞬間」</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>具体的に何が起きるか</h3>
+    <p>① 数字を見なくなる</p>
+    <p>② 悪い報告を避ける</p>
+    <p>③ イエスマンだけ残す</p>
+    <p>④ 問題を先送りにする</p>
+    <p style="margin-top:12px;">これが全部起きる理由はたった一つ：<strong>「自分が否定されるのが怖い」</strong></p>
+    <p>真実より気持ちを取る → 改善より現状維持 → 結果：崩壊</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 11 ===== -->
+<div class="section" id="s11">
+  <span class="section-number">11</span>
+  <h2>人を狂わせる3つの感情</h2>
+
+  <div class="key">
+    人間の判断を狂わせるのは<br>
+    <span style="font-size:1.3em;">欲 × 恐怖 × 承認欲求</span>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num" style="background:#f0a500;">欲</div>
+      <div class="case-title">「もっと欲しい」が暴走する時</div>
+    </div>
+    <div class="flow">
+      「これ儲かる」 <span class="arrow">→</span> 欲が刺激される <span class="arrow">→</span> リスク軽視 <span class="arrow">→</span> 「まぁ大丈夫やろ」<br>
+      <strong style="color:#e94560;">ここで論語が消える</strong>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num" style="background:#e94560;">恐</div>
+      <div class="case-title">「失いたくない」に支配される時</div>
+    </div>
+    <div class="flow">
+      ノルマ未達 <span class="arrow">→</span> 恐怖（評価・地位） <span class="arrow">→</span> 嘘・隠蔽 <span class="arrow">→</span> 崩壊<br>
+      <strong style="color:#e94560;">東芝の構造はこれ</strong>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <div class="case-num" style="background:#8ecae6; color:#000;">認</div>
+      <div class="case-title">「認められたい」で暴走する時</div>
+    </div>
+    <div class="flow">
+      調子いい <span class="arrow">→</span> 承認欲求MAX <span class="arrow">→</span> 「信はすごい」 <span class="arrow">→</span> 無謀な拡大<br>
+      <strong style="color:#e94560;">WeWorkの構造はこれ</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 12 ===== -->
+<div class="section" id="s12">
+  <span class="section-number">12</span>
+  <h2>深い判断軸（完全版）</h2>
+
+  <p style="margin-bottom:20px;">浅い軸ではまた負ける。何か行動する前に、この5つを自分に問いかける：</p>
+
+  <div class="axis-item">
+    <div class="axis-num">1</div>
+    <div class="axis-content">
+      <strong>欲に支配されてないか？</strong>
+      <span>これ「欲しいから」やってないか？ 冷静に見れてるか？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">2</div>
+    <div class="axis-content">
+      <strong>現実から逃げてないか？</strong>
+      <span>見たくない数字を見てるか？ 面倒な問題を後回しにしてないか？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">3</div>
+    <div class="axis-content">
+      <strong>短期の快楽を選んでないか？</strong>
+      <span>今ラクになる選択をしてないか？ 長期で損してないか？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">4</div>
+    <div class="axis-content">
+      <strong>正しいことを言えるか？</strong>
+      <span>人に説明できるか？ 後ろめたくないか？</span>
+    </div>
+  </div>
+
+  <div class="axis-item">
+    <div class="axis-num">5</div>
+    <div class="axis-content">
+      <strong>成長につながるか？</strong>
+      <span>これで自分は強くなるか？ それとも弱くなるか？</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 13 ===== -->
+<div class="section" id="s13">
+  <span class="section-number">13</span>
+  <h2>渋沢栄一の凄さ（まとめ）</h2>
+
+  <div class="card gold">
+    <p>渋沢が作ろうとしたのは、<strong>「人間の弱さに勝つ仕組み」</strong></p>
+    <table>
+      <tr><th>論語の役割</th><th>算盤の役割</th></tr>
+      <tr><td>欲を抑える</td><td>現実を見る</td></tr>
+      <tr><td>正しさを思い出させる</td><td>数字で嘘を防ぐ</td></tr>
+      <tr><td>長期視点を持たせる</td><td>感情を排除する</td></tr>
+    </table>
+    <div class="key" style="margin-top:16px;">
+      感情 vs 仕組み → 仕組みで勝て
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONCLUSION ===== -->
+<div class="conclusion" id="conclusion">
+  <h2>結論（核心）</h2>
+  <div class="big">
+    失敗の原因は知識不足じゃない。<br><br>
+    <span style="color:#e94560;">「自分の弱さを管理できないこと」</span><br><br>
+    だからこそ、判断軸という仕組みで<br>
+    自分を裏切らないルールを作る。
+  </div>
+  <p style="margin-top:24px; color:#888; font-size:0.9em;">
+    論語と算盤 = 孔子の教え + 一流経営者の共通原理を抽象化したもの
+  </p>
+</div>
+
+</div><!-- /container -->
+</body>
+    </html>
